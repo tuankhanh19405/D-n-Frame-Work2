@@ -1,4 +1,36 @@
 {
-  "products": [],
-  "users": []
+  "products": [
+    {
+      "name": "Quần Jean",
+      "image": "https://dytbw3ui6vsu6.cloudfront.net/media/catalog/product/resize/780x780/S/a/Sandro_SHPJE00562-BLUV_V_4_1_4.webp",
+      "desciption": "dsfg",
+      "price": "84562656",
+      "id": 1
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "name": "Áo"
+    },
+    {
+      "id": 2,
+      "name": "Quần"
+    },
+    {
+      "name": "Giày",
+      "image": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxMSEhUTExIWFRUXFxUVFRgVGBcVGBcWFRYXFhUXFRcYHiggGBolHRUVITEiJSkrLi4uFx8zODMsNygtLisBCgoKDg0OGhAQGy0lICUtLS0tLS8vLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLf/AABEIALcBEwMBIgACEQEDEQH/xAAcAAABBQEBAQAAAAAAAAAAAAADAAECBAUGBwj/xABGEAABAwIDBQUEBwYDBwUAAAABAAIRAyEEEjEFQVFhcQYigZGhE7HB0RQVMkJSkvAHYnKCouEjU/EzQ3OTstLiFiRjw9P/xAAaAQADAQEBAQAAAAAAAAAAAAAAAQIDBAUG/8QALBEAAgIBAwMCBQUBAQAAAAAAAAECERIDITETQVEEFGFxkbHwIlKBodHhQ//aAAwDAQACEQMRAD8Ax8S1rxpflqsipRe05mPPIiWkeWo/UI78Zm1sf1oVF1XfPiNeU8V9MotHjOSZobO7VvpgNqtzjiLHyNj6LUqY/B40hroa7963hqL8xK42uJ4Ty0Kpuah6Ke62Y460uHudPtTsRWaZokVGmYEw4b4MwPEwuaxOFfTdlexzXcHCP9VpbN2/iKB7ryRwdcfP1XW0Np4XaDPZ1x7Op90zbNGoPHkdeam5w53Rf6J8bM88hPC2+0PZurhHDMC+mdKgaQ0ngTcA+N/OMgNW8WpK0YSTi6ZEBOApBqkArSIbIgKQCkAnAVpENiAUwEgFMBOiGxgFNoSAUwFVENkmBWaDkAKbSnRnlTs0W19ys4etBErLpuVuk5ZyidENWzoH4kAQDKzKmIQRUQHvWUNOjeerYf6Qq2IfNvJQDkKqZWyiYS1bRVeEJwR3oZCs50wJCGQjkIZalRqmBIUCEYhQIU0aJg4USEUhRISopMHCiQikJiFNFJgcqSJlSSxKyNHFHQ5COoKpvrHot",
+      "id": 3
+    }
+  ],
+  "users": [
+    {
+      "email": "khanh@gmail.com",
+      "password": "$2a$10$vTeK6tF8o1lQqwiLtqSwBeKR9KeuMtX7d.PolrNATifJTUEYJZt0e",
+      "name": "Phan Tuấn Khanh",
+      "phone": "0961301419",
+      "repassword": "123456",
+      "id": 1
+    }
+  ]
 }

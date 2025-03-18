@@ -1,35 +1,49 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-import "./App.css";
+import { useRoutes } from 'react-router-dom'
+
+
+import AdminLayout from './layout/admin'
+import Dashboard from './layout/admin/quanLySanPham'
+import AddDanhMuc from './layout/admin/addDanhMuc'
+import EditDanhMuc from './layout/admin/editDanhMuc'
+import DanhMucDB from './layout/admin/quanLyDanhMuc'
+import AddProduct from './layout/admin/addSanPham'
+import EditProduct from './layout/admin/editSanPham'
+
+
+
+import ClientLayout from './layout/cilent'
+import HomeClient from './layout/cilent/home'
+import ListClient from './layout/cilent/listproduct'
+import Detail from './layout/cilent/detailproduct'
+import Login from './layout/cilent/login'
+import Register from './layout/cilent/register'
 
 function App() {
-  const [count, setCount] = useState(0);
+    // Khai báo routes
+    const routes = useRoutes([
+      
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  );
+      {path:'/dashboard',element:<AdminLayout/>,children:[
+        {path:'',element:<Dashboard/>},
+        {path:'product-add',element:<AddProduct/>},
+        {path:'danhmuc-add',element:<AddDanhMuc/>},
+        {path:'danhmuc-edit/:id',element:<EditDanhMuc/>},
+        {path:'product-edit/:id',element:<EditProduct/>},
+        {path:'danhmuc',element:<DanhMucDB/>},
+
+        // {path:'/product-edit/:id',element:<EditProduct/>}
+      ]},
+      {path:'/client',element:<ClientLayout/>,children:[
+       {path:'',element:<HomeClient/>},
+       {path:'list-product',element:<ListClient/>},
+       {path:'product-detail/:id',element:<Detail/>},
+       {path:'dang-ky',element:<Register/>},
+       {path:'dang-nhap',element:<Login/>},
+       
+
+      ]}
+    ])
+    return routes
 }
-
-export default App;
+ 
+export default App
