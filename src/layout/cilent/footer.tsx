@@ -4,7 +4,7 @@ import React from "react";
 
 const ClientFooter = () => {
   return (
-    <footer className="bg-green-900 text-white py-8 font-sans">
+    <footer className="bg-black text-white py-8 font-sans">
       <div className="w-4/5 mx-auto flex flex-col items-center">
         {/* Phần trên: Giới thiệu + Social Media */}
         <div className="text-center mb-4">
@@ -46,7 +46,7 @@ const ClientFooter = () => {
       </div>
 
       {/* Phần dưới: Bản quyền & Phương thức thanh toán */}
-      <div className="bg-green-950 flex flex-col md:flex-row justify-between items-center py-4 mt-5 w-4/5 mx-auto gap-4">
+      <div className="bg-black flex flex-col md:flex-row justify-between items-center py-4 mt-5 w-4/5 mx-auto gap-4">
         <p className="text-sm text-center md:text-left">© 2023 hood.de, Inc.</p>
         <img src="./img/icons_payment 1.png" alt="Payment Methods" className="w-40" />
         <button 

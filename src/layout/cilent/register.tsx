@@ -14,7 +14,7 @@ const Register = (props: Props) => {
         try {
             const { data } = await axios.post(`http://localhost:3000/register`, user)
             alert('Đăng ký thành công')
-            navigate('/client/dang-nhap')
+            navigate('/dang-nhap')
         } catch (error: any) {
             alert(error.response.data ?? error.message)
             console.log(error);

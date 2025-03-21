@@ -1,12 +1,26 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { FaSearch, FaChevronDown, FaUser, FaShoppingCart } from "react-icons/fa";
-import React from "react";
 import { Link } from "react-router-dom";
 
 const ClientHeader = ({ onSearch }: { onSearch: (query: string) => void }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [showSubmenu, setShowSubmenu] = useState(false);
   const [isAccountOpen, setIsAccountOpen] = useState(false);
+  const [user, setUser] = useState<{ name: string } | null>(null);
+  const timeoutRef = useRef<any>(null);
+
+  useEffect(() => {
+    // Lấy thông tin user từ localStorage khi load trang
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      setUser(JSON.parse(storedUser));
+    }
+  }, []);
+
+  const handleLogout = () => {
+    localStorage.removeItem('user');
+    setUser(null);
+  };
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -14,8 +28,19 @@ const ClientHeader = ({ onSearch }: { onSearch: (query: string) => void }) => {
     onSearch(value);
   };
 
+  const handleAccountMouseEnter = () => {
+    clearTimeout(timeoutRef.current);
+    setIsAccountOpen(true);
+  };
+
+  const handleAccountMouseLeave = () => {
+    timeoutRef.current = setTimeout(() => {
+      setIsAccountOpen(false);
+    }, 150);
+  };
+
   return (
-    <header className="bg-gradient-to-br from-green-800 to-gray-400 h-[175px] w-full">
+    <header className="bg-gradient-to-br from-gray-500 to-gray-700 h-[175px] w-full">
       {/* Menu 1 */}
       <div className="flex justify-center items-center h-[79px]">
         <div className="bg-white rounded-md flex items-center px-3 w-[525px] h-[42px]">
@@ -28,28 +53,43 @@ const ClientHeader = ({ onSearch }: { onSearch: (query: string) => void }) => {
           />
           <FaSearch className="text-gray-600" />
         </div>
+
         <div className="ml-5 text-white flex items-center gap-6">
           <span className="flex items-center cursor-pointer">En <FaChevronDown className="ml-1" /></span>
 
-          {/* Account Dropdown (Fix lỗi mất ngay khi hover) */}
+          {/* Account Dropdown */}
           <div 
             className="relative"
-            onMouseEnter={() => setIsAccountOpen(true)}
-            onMouseLeave={() => setIsAccountOpen(false)}
+            onMouseEnter={handleAccountMouseEnter}
+            onMouseLeave={handleAccountMouseLeave}
           >
             <span className="flex items-center cursor-pointer px-4 py-2 rounded-lg hover:bg-gray-200 transition-all text-white">
               <FaUser className="mr-1" />
-              Account
+              {user ? user.name : "Account"}
             </span>
 
             {isAccountOpen && (
               <div 
                 className="absolute left-0 mt-2 w-40 bg-white shadow-lg rounded-lg border border-gray-200"
-                onMouseEnter={() => setIsAccountOpen(true)} // Giữ dropdown mở khi hover vào
-                onMouseLeave={() => setIsAccountOpen(false)} // Đóng khi rời khỏi dropdown
+                onMouseEnter={handleAccountMouseEnter}
+                onMouseLeave={handleAccountMouseLeave}
               >
-                <Link to="/client/dang-nhap" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">Đăng nhập</Link>
-                <Link to="/client/dang-ky" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">Đăng ký</Link>
+                {!user ? (
+                  <>
+                    <Link to="/dang-nhap" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">Đăng nhập</Link>
+                    <Link to="/dang-ky" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">Đăng ký</Link>
+                  </>
+                ) : (
+                  <>
+                    <span className="block px-4 py-2 text-gray-700">Xin chào, {user.name}</span>
+                    <button
+                      onClick={handleLogout}
+                      className="block w-full text-left px-4 py-2 text-gray-700 hover:bg-gray-100"
+                    >
+                      Đăng xuất
+                    </button>
+                  </>
+                )}
               </div>
             )}
           </div>
@@ -57,40 +97,8 @@ const ClientHeader = ({ onSearch }: { onSearch: (query: string) => void }) => {
           <span className="flex items-center cursor-pointer"><FaShoppingCart className="mr-1" />Cart</span>
         </div>
       </div>
-      <hr className="border-gray-300" />
-
-      {/* Menu 2 */}
-      <nav className="flex justify-center items-center h-[80px]">
-        <ul className="flex gap-4 text-white">
-          {[
-            "Beleuchtung",
-            "Growbox",
-            "Dünger",
-            "Töpfe & Behälter",
-            "Bewässerung",
-            "Pflanzen & Gärtnern",
-            "Lüftung & Klimaanlage",
-          ].map((item) => (
-            <li key={item} className="px-4 py-2 cursor-pointer hover:bg-gray-300 hover:text-red-600">
-              {item} <FaChevronDown className="inline ml-1" />
-            </li>
-          ))}
-          <li
-            className="relative px-4 py-2 cursor-pointer hover:bg-gray-300 hover:text-red-600"
-            onMouseEnter={() => setShowSubmenu(true)}
-            onMouseLeave={() => setShowSubmenu(false)}
-          >
-            Erde & Substrate <FaChevronDown className="inline ml-1" />
-            {showSubmenu && (
-              <ul className="absolute left-0 top-full bg-gray-700 text-white p-2 w-[200px] opacity-100 transition-opacity">
-                {["Blumenerde", "Kokos Substrate", "Hydroponische Medien"].map((sub) => (
-                  <li key={sub} className="px-4 py-2 hover:bg-gray-500">{sub}</li>
-                ))}
-              </ul>
-            )}
-          </li>
-        </ul>
-      </nav>
+      
+      {/* Menu 2 giữ nguyên */}
     </header>
   );
 };

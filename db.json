@@ -6,6 +6,50 @@
       "desciption": "dsfg",
       "price": "84562656",
       "id": 1
+    },
+    {
+      "name": "Quần Jean",
+      "image": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxMSEhUTExIWFRUXFxUVFRgVGBcVGBcWFRYXFhUXFRcYHiggGBolHRUVITEiJSkrLi4uFx8zODMsNygtLisBCgoKDg0OGhAQGy0lICUtLS0tLS8vLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLf/AABEIALcBEwMBIgACEQEDEQH/xAAcAAABBQEBAQAAAAAAAAAAAAADAAECBAUGBwj/xABGEAABAwIDBQUEBwYDBwUAAAABAAIRAyEEEjEFQVFhcQYigZGhE7HB0RQVMkJSkvAHYnKCouEjU/EzQ3OTstLiFiRjw9P/xAAaAQADAQEBAQAAAAAAAAAAAAAAAQIDBAUG/8QALBEAAgIBAwMCBQUBAQAAAAAAAAECERIDITETQVEEFGFxkbHwIlKBodHhQ//aAAwDAQACEQMRAD8Ax8S1rxpflqsipRe05mPPIiWkeWo/UI78Zm1sf1oVF1XfPiNeU8V9MotHjOSZobO7VvpgNqtzjiLHyNj6LUqY/B40hroa7963hqL8xK42uJ4Ty0Kpuah6Ke62Y460uHudPtTsRWaZokVGmYEw4b4MwPEwuaxOFfTdlexzXcHCP9VpbN2/iKB7ryRwdcfP1XW0Np4XaDPZ1x7Op90zbNGoPHkdeam5w53Rf6J8bM88hPC2+0PZurhHDMC+mdKgaQ0ngTcA+N/OMgNW8WpK0YSTi6ZEBOApBqkArSIbIgKQCkAnAVpENiAUwEgFMBOiGxgFNoSAUwFVENkmBWaDkAKbSnRnlTs0W19ys4etBErLpuVuk5ZyidENWzoH4kAQDKzKmIQRUQHvWUNOjeerYf6Qq2IfNvJQDkKqZWyiYS1bRVeEJwR3oZCs50wJCGQjkIZalRqmBIUCEYhQIU0aJg4USEUhRISopMHCiQikJiFNFJgcqSJlSSxKyNHFHQ5COoKpvrHot",
+      "image2": "https://images.unsplash.com/photo-1596755095321-ec48b94a4489",
+      "image3": "https://images.unsplash.com/photo-1602810318660-1f7a4c78f87d",
+      "price": 84562656,
+      "description": "dsrtyui",
+      "descriptionLong": "frtyui",
+      "category_id": 1,
+      "id": 2
+    },
+    {
+      "name": "Quần Jean",
+      "image": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxMSEhUTExIWFRUXFxUVFRgVGBcVGBcWFRYXFhUXFRcYHiggGBolHRUVITEiJSkrLi4uFx8zODMsNygtLisBCgoKDg0OGhAQGy0lICUtLS0tLS8vLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLf/AABEIALcBEwMBIgACEQEDEQH/xAAcAAABBQEBAQAAAAAAAAAAAAADAAECBAUGBwj/xABGEAABAwIDBQUEBwYDBwUAAAABAAIRAyEEEjEFQVFhcQYigZGhE7HB0RQVMkJSkvAHYnKCouEjU/EzQ3OTstLiFiRjw9P/xAAaAQADAQEBAQAAAAAAAAAAAAAAAQIDBAUG/8QALBEAAgIBAwMCBQUBAQAAAAAAAAECERIDITETQVEEFGFxkbHwIlKBodHhQ//aAAwDAQACEQMRAD8Ax8S1rxpflqsipRe05mPPIiWkeWo/UI78Zm1sf1oVF1XfPiNeU8V9MotHjOSZobO7VvpgNqtzjiLHyNj6LUqY/B40hroa7963hqL8xK42uJ4Ty0Kpuah6Ke62Y460uHudPtTsRWaZokVGmYEw4b4MwPEwuaxOFfTdlexzXcHCP9VpbN2/iKB7ryRwdcfP1XW0Np4XaDPZ1x7Op90zbNGoPHkdeam5w53Rf6J8bM88hPC2+0PZurhHDMC+mdKgaQ0ngTcA+N/OMgNW8WpK0YSTi6ZEBOApBqkArSIbIgKQCkAnAVpENiAUwEgFMBOiGxgFNoSAUwFVENkmBWaDkAKbSnRnlTs0W19ys4etBErLpuVuk5ZyidENWzoH4kAQDKzKmIQRUQHvWUNOjeerYf6Qq2IfNvJQDkKqZWyiYS1bRVeEJwR3oZCs50wJCGQjkIZalRqmBIUCEYhQIU0aJg4USEUhRISopMHCiQikJiFNFJgcqSJlSSxKyNHFHQ5COoKpvrHot",
+      "image2": "https://images.unsplash.com/photo-1596755095321-ec48b94a4489",
+      "image3": "",
+      "price": 84562656,
+      "description": "rdgtyui",
+      "descriptionLong": "rtyui",
+      "category_id": 2,
+      "id": 3
+    },
+    {
+      "name": "Quần Jean",
+      "image": "https://images.unsplash.com/photo-1503023345310-bd7c1de61c7d",
+      "image2": "",
+      "image3": "",
+      "price": 852,
+      "description": "rgtyui",
+      "descriptionLong": "grthyui",
+      "category_id": 1,
+      "id": 4
+    },
+    {
+      "name": "Phan Tuấn Khanh",
+      "image": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxMSEhUTExIWFRUXFxUVFRgVGBcVGBcWFRYXFhUXFRcYHiggGBolHRUVITEiJSkrLi4uFx8zODMsNygtLisBCgoKDg0OGhAQGy0lICUtLS0tLS8vLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLf/AABEIALcBEwMBIgACEQEDEQH/xAAcAAABBQEBAQAAAAAAAAAAAAADAAECBAUGBwj/xABGEAABAwIDBQUEBwYDBwUAAAABAAIRAyEEEjEFQVFhcQYigZGhE7HB0RQVMkJSkvAHYnKCouEjU/EzQ3OTstLiFiRjw9P/xAAaAQADAQEBAQAAAAAAAAAAAAAAAQIDBAUG/8QALBEAAgIBAwMCBQUBAQAAAAAAAAECERIDITETQVEEFGFxkbHwIlKBodHhQ//aAAwDAQACEQMRAD8Ax8S1rxpflqsipRe05mPPIiWkeWo/UI78Zm1sf1oVF1XfPiNeU8V9MotHjOSZobO7VvpgNqtzjiLHyNj6LUqY/B40hroa7963hqL8xK42uJ4Ty0Kpuah6Ke62Y460uHudPtTsRWaZokVGmYEw4b4MwPEwuaxOFfTdlexzXcHCP9VpbN2/iKB7ryRwdcfP1XW0Np4XaDPZ1x7Op90zbNGoPHkdeam5w53Rf6J8bM88hPC2+0PZurhHDMC+mdKgaQ0ngTcA+N/OMgNW8WpK0YSTi6ZEBOApBqkArSIbIgKQCkAnAVpENiAUwEgFMBOiGxgFNoSAUwFVENkmBWaDkAKbSnRnlTs0W19ys4etBErLpuVuk5ZyidENWzoH4kAQDKzKmIQRUQHvWUNOjeerYf6Qq2IfNvJQDkKqZWyiYS1bRVeEJwR3oZCs50wJCGQjkIZalRqmBIUCEYhQIU0aJg4USEUhRISopMHCiQikJiFNFJgcqSJlSSxKyNHFHQ5COoKpvrHot",
+      "image2": "https://images.unsplash.com/photo-1596755095321-ec48b94a4489",
+      "image3": "",
+      "price": 852,
+      "description": "gfhjkl",
+      "descriptionLong": "gfhyjkl",
+      "category_id": 2,
+      "id": 5
     }
   ],
   "categories": [

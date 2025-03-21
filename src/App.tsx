@@ -33,7 +33,7 @@ function App() {
 
         // {path:'/product-edit/:id',element:<EditProduct/>}
       ]},
-      {path:'/client',element:<ClientLayout/>,children:[
+      {path:'/',element:<ClientLayout/>,children:[
        {path:'',element:<HomeClient/>},
        {path:'list-product',element:<ListClient/>},
        {path:'product-detail/:id',element:<Detail/>},

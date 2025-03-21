@@ -12,14 +12,24 @@ const Login = (props: Props) => {
 
     const onSubmit = async (user: ILoginForm) => {
         try {
-            const { data } = await axios.post(`http://localhost:3000/login`, user)
-            alert('Đăng nhập thành công')
-            navigate('/client')
+            const { data } = await axios.post(`http://localhost:3000/login`, user);
+            console.log('DATA:', data); // 👈 Xem rõ
+    
+            // Nếu API trả về { user: { ... }, accessToken: '...' }
+            if (data.user) {
+                localStorage.setItem('user', JSON.stringify(data.user));
+            } else {
+                localStorage.setItem('user', JSON.stringify(data)); // fallback
+            }
+    
+            alert('Đăng nhập thành công');
+            navigate('/');
         } catch (error: any) {
-            alert(error.response.data ?? error.message)
-            console.log(error)
+            alert(error.response?.data || error.message);
+            console.log(error);
         }
-    }
+    };
+    
 
     return (
         <div className='max-w-md mx-auto py-10 bg-green-50 shadow-lg rounded-md p-6'>
