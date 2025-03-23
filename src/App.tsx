@@ -17,6 +17,7 @@ import ListClient from './layout/cilent/listproduct'
 import Detail from './layout/cilent/detailproduct'
 import Login from './layout/cilent/login'
 import Register from './layout/cilent/register'
+import DetailUser from './layout/cilent/userdetail'
 
 function App() {
     // Khai báo routes
@@ -39,6 +40,7 @@ function App() {
        {path:'product-detail/:id',element:<Detail/>},
        {path:'dang-ky',element:<Register/>},
        {path:'dang-nhap',element:<Login/>},
+       {path:'user-detail/:id',element:<DetailUser/>},
        
 
       ]}
