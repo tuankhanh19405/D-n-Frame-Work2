@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { IProduct } from '../../interface/products';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import bgImage from './img/slide_1_img.jpg';
+import bgImage from './img/cach-chon-nuoc-hoa-cho-mua-he-phu-hop.jpg';
 
 
 type Props = {};
