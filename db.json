@@ -1,26 +1,72 @@
 {
   "products": [
     {
-      "name": "Quần Jean",
-      "image": "https://dytbw3ui6vsu6.cloudfront.net/media/catalog/product/resize/780x780/S/a/Sandro_SHPJE00562-BLUV_V_4_1_4.webp",
+      "name": "Nước Hoa Nam Giorgio Armani Armani Stronger With You Absolutely Parfum",
+      "image": "https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/8598bfd4-ce35-4eba-8a19-e35bf4979274-jpeg.jpg?v=1742368971723",
       "desciption": "dsfg",
-      "price": "84562656",
-      "id": 1
+      "price": 2690000,
+      "id": 1,
+      "category_id": 1,
+      "image2": "",
+      "image3": "",
+      "description": "",
+      "descriptionLong": "Thương Hiệu Emporio Armani: Đỉnh Cao Của Sự Sang Trọng\nEmporio Armani, thương hiệu thời trang danh tiếng của Giorgio Armani, đã khẳng định vị thế vững chắc trong lòng người tiêu dùng toàn cầu nhờ sự kết hợp tinh tế giữa phong cách hiện đại và sự sang trọng truyền thống. Với hơn ba thập kỷ phát triển, Emporio Armani không chỉ nổi bật trong lĩnh vực may mặc mà còn mở rộng mạnh mẽ sang các dòng sản phẩm phụ kiện, nước hoa và đồng hồ. Thương hiệu này luôn cam kết mang đến những dòng sản phẩm chất lượng vượt trội, thiết kế đẳng cấp và phong cách tối giản nhưng không kém phần tinh tế, đáp ứng được nhu cầu đa dạng của khách hàng từ giới trẻ đến người tiêu dùng trung niên.\n\n \n\n\n\n \n\nGiorgio Armani Emporio Stronger With You Absolutely là chai nước hoa nam được ra mắt vào năm 2021 và nhận được rất nhiều lời khen ngợi từ đấng mày râu và cả phái đẹp. Absolutely mở ra nốt hương đầu đầy say mê với vị cay, ngọt nhẹ từ rượu Rum cùng nốt mùi chua chua từ cam Bergamot và nhựa Elemi. Sau khoảng 30 phút, nốt mùi rượu lúc đầu sẽ phai dần và bật lên nốt hương sạch sẽ, tinh tế từ hoa oải hương và tinh dầu Davana.\n\nĐiểm ấn tượng của em này nằm ở phần kết, mùi hương càng về sau sẽ trở nên ngọt ngào, ấm áp và nồng nàn hơn với sự kết hợp tinh tế từ hạt dẻ và Vani Madagascar trên nền hương gỗ tuyết tùng và hạt dẻ cay ấm. Tuy nhiên, nốt mùi ngọt của vani trong bản Absolutely rất tự nhiên, tinh tế và không bị ngấy khó chịu."
+    },
+    {
+      "name": "Nước hoa Nam Tom Ford Costa Azzurra Parfum",
+      "image": "https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/1c69e148-7dd1-4285-8774-0449e2c025ce-jpeg-607672ad-45a6-41bb-9bfa-04dfdaa0c09e.jpg?v=1742355639387",
+      "image2": "https://bizweb.dktcdn.net/thumb/small/100/110/910/products/6bf11290-5aa1-410a-beb1-6c6686bee650-jpeg-a2f77eb9-2810-474b-bf72-2b2c76846d4d.jpg?v=1742355639387",
+      "image3": "",
+      "price": 3589999,
+      "description": "",
+      "descriptionLong": "Nước Hoa Tom Ford Costa Azzurra Parfum có hương thơm của bờ biển Địa Trung Hải với cây bách, gỗ sồi và gỗ tuyết tùng. Hương thơm này chứa đựng phong cách của mùa hè trong nó.\n\nNước Hoa Tom Ford Costa Azzurra Parfum là mùi hương của những bãi biển ngập nắng và những khu rừng ven biển, hoàn hảo cho những ngày nóng nực và uể oải. Gỗ và hổ phách tạo nên hương thơm vô cùng độc đáo. nước hoa tom ford costa azzurra parfum chính hãng\n\nSự kết hợp giữa cam chanh với gỗ và hổ phách tạo nên một mùi hương tươi mát, nam tính, năng động phù hợp cho các chàng trai thích thể thao, tươi trẻ nếu bạn là một chàng trai như vậy thì đừng bỏ qua Chai Nước Hoa Tom Ford Costa Azzurra Parfum. nước hoa tom ford costa azzurra parfum chính hãng\n\nMùi Hương Đặc Trưng:\nHương đầu là chanh Ý.\nHương giữa là cây bách và gỗ sồi.\nHương cuối là hổ phách và Labdanum",
+      "category_id": 1,
+      "id": 2
+    },
+    {
+      "name": "Tester Lacoste Noir Intense ( tester )",
+      "image": "https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/874e448e-f9e7-47b8-91cc-c55fd7acff7f-jpeg.jpg?v=1742008296133",
+      "image2": "",
+      "image3": "",
+      "price": 990000,
+      "description": "",
+      "descriptionLong": "Sale Tester edt 100ml  - Giá 1390k giảm 400k chỉ còn 990k\n\n( Tester New 100% - vỏ hộp trắng như hình )\n\n \n\nLACOSTE EAU DE LACOSTE L12.12 NOIR-INTENSE EDT  \n\n\n\n\n\n\nL.12.12 Lacoste Noir mang âm hưởng nhẹ nhàng, dễ chịu khơi gợi từ nét hòa quyện ngọt đắng hoàn hảo của socola và dưa hấu, gây ấn tượng từ những giây phút bật mở hương thơm đầu tiên. Nếu như hỗn hợp oải hương và dưa hấu mở ra hương vị tự nhiên tươi mới thì một chút thơm nhẹ khó quên của socola mang lại xúc cảm phức tạp nhưng vô cùng ấm áp, thoải mái. \n\nHương giữa của Noir là giai điệu tuyệt vời của chất socola quyến rũ và hoắc hương đầy sức sống gợi lên nét rung cảm vừa nam tính, trưởng thành vừa ngọt ngào, dễ chịu và cảm giác rất mềm mại trên da.\n\nCác nốt hương cuối mang đậm phong vị của gỗ từ các hương hoắc hương, coumarine và gỗ.\n \n\n ",
+      "category_id": 1,
+      "id": 3
+    },
+    {
+      "name": "(Sale) Tom Ford Fucking Fabulous ( ưu đãi đặt online)",
+      "image": "https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/4003432b-ce40-4a9b-8a0e-64211bbda67c-jpeg-93b43114-1743-4240-a34e-b1c347f96108.jpg?v=1741622181733",
+      "image2": "https://bizweb.dktcdn.net/thumb/small/100/110/910/products/d68f5dfc-4e6e-4929-b215-5e6e4792edcd-jpeg-31c47c75-a8a1-4f56-a2d4-f442b9ba0c68.jpg?v=1741622181733",
+      "image3": "",
+      "price": 290000,
+      "description": "",
+      "descriptionLong": "Tom Ford Fucking Fabulous\nTom ford lại một lần nữa khuấy động ngành công nghiệp nước hoa cao cấp vào năm 2017, với việc cho ra đời dòng nước hoa Tom Ford Fucking Fabulous – một sản phẩm độc đáo với phong cách “bất ngờ” dành cho cả nam và nữ. Đây là phiên bản giới hạn của dòng Private Bleand độc quyền của thương hiệu. Hương thơm tuyệt vời của hạnh nhân đắng, hoa diên vĩ, da thuộc, đậu tonka và cây xô thơm đã trở thành sản phẩm bán chạy nhất; cháy hàng sau ngày đầu mở bán và hiện vẫn là best seller của Tom Ford.\n\nMùi hương đặc trưng\n\nHương Đầu: Cây đơn sâm, Hoa Oải Hương\n\nHương giữa: Hạnh nhân đắng, Hương Va ni, Da thuộc, Hoa diên vĩ (Orris)\n\nHương cuối: Đậu Tonka, Da thuộc, Hương Cashmeran, Hổ phách, Hương gỗ trắng",
+      "category_id": 1,
+      "id": 4
+    },
+    {
+      "name": "GiftSet Hermes Un Jardin Sur le nil",
+      "image": "https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/img-8165-jpeg.jpg?v=1741155090493",
+      "image2": "https://bizweb.dktcdn.net/thumb/small/100/110/910/products/img-8160-jpeg.jpg?v=1741155094663",
+      "image3": "https://bizweb.dktcdn.net/thumb/small/100/110/910/products/img-8158-jpeg.jpg?v=1741155094663",
+      "price": 2590000,
+      "description": "",
+      "descriptionLong": "Bộ quà tặng Hermes Un Jardin Sur Le Nil 3 món .\n\n Gồm: \n\nNước hoa 100ML\nMini 15ML\nBody show gel 40ML\nHM Un Jardin Sur Le Nil lừng danh, một trong những cái tên thường được nhắc đến đầu tiên mỗi khi nói tới nước hoa mùa hè. \n \n\n\n\n\nThật là thiếu sót lớn nếu bạn là người chơi nước hoa mà chưa từng một lần được đắm chìm trong mùi hương của sen, của xoài, của không khí bên bờ sông Nil huyền thoại - cái hợp hương vừa thư giãn yên bình, lại vừa bảng lảng khó quên mà chai nước hoa này mang lại cho bạn.\n\nXoài xanh, hoa sen mát nhẹ thư thái. Cái thư thái của Hermes không bánh bèo mà mang khí chất sang chảnh rất riêng.",
+      "category_id": 1,
+      "id": 5
     }
   ],
   "categories": [
     {
       "id": 1,
-      "name": "Áo"
+      "name": "Nước Hoa Nam",
+      "image": ""
     },
     {
       "id": 2,
-      "name": "Quần"
-    },
-    {
-      "name": "Giày",
-      "image": "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxMSEhUTExIWFRUXFxUVFRgVGBcVGBcWFRYXFhUXFRcYHiggGBolHRUVITEiJSkrLi4uFx8zODMsNygtLisBCgoKDg0OGhAQGy0lICUtLS0tLS8vLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLf/AABEIALcBEwMBIgACEQEDEQH/xAAcAAABBQEBAQAAAAAAAAAAAAADAAECBAUGBwj/xABGEAABAwIDBQUEBwYDBwUAAAABAAIRAyEEEjEFQVFhcQYigZGhE7HB0RQVMkJSkvAHYnKCouEjU/EzQ3OTstLiFiRjw9P/xAAaAQADAQEBAQAAAAAAAAAAAAAAAQIDBAUG/8QALBEAAgIBAwMCBQUBAQAAAAAAAAECERIDITETQVEEFGFxkbHwIlKBodHhQ//aAAwDAQACEQMRAD8Ax8S1rxpflqsipRe05mPPIiWkeWo/UI78Zm1sf1oVF1XfPiNeU8V9MotHjOSZobO7VvpgNqtzjiLHyNj6LUqY/B40hroa7963hqL8xK42uJ4Ty0Kpuah6Ke62Y460uHudPtTsRWaZokVGmYEw4b4MwPEwuaxOFfTdlexzXcHCP9VpbN2/iKB7ryRwdcfP1XW0Np4XaDPZ1x7Op90zbNGoPHkdeam5w53Rf6J8bM88hPC2+0PZurhHDMC+mdKgaQ0ngTcA+N/OMgNW8WpK0YSTi6ZEBOApBqkArSIbIgKQCkAnAVpENiAUwEgFMBOiGxgFNoSAUwFVENkmBWaDkAKbSnRnlTs0W19ys4etBErLpuVuk5ZyidENWzoH4kAQDKzKmIQRUQHvWUNOjeerYf6Qq2IfNvJQDkKqZWyiYS1bRVeEJwR3oZCs50wJCGQjkIZalRqmBIUCEYhQIU0aJg4USEUhRISopMHCiQikJiFNFJgcqSJlSSxKyNHFHQ5COoKpvrHot",
-      "id": 3
+      "name": "Nước Hoa Nữ",
+      "image": ""
     }
   ],
   "users": [
@@ -30,7 +76,8 @@
       "name": "Phan Tuấn Khanh",
       "phone": "0961301419",
       "repassword": "123456",
-      "id": 1
+      "id": 1,
+      "role": "admin"
     }
   ]
 }

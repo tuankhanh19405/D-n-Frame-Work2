@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { IProduct } from '../../interface/products';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import bgImage from './img/Group 1000002255.png';
+import bgImage from './img/cach-chon-nuoc-hoa-cho-mua-he-phu-hop.jpg';
 
 
 type Props = {};
@@ -50,20 +50,53 @@ const Home: React.FC<Props> = () => {
 
       {/* 🌟 Best Sellers */}
       <div className="w-full px-6 mt-10">
-        <h2 className="text-3xl text-lime-900 font-bold">List Product</h2>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-6">
-          {products.slice(0, 4).map((product) => (
-            <div key={product.id} className="bg-white p-4 shadow-md rounded-lg">
-              <img src={product.image} alt={product.name} className="w-full h-[200px] object-cover rounded-md" />
-              <h3 className="text-lg font-semibold mt-2">{product.name}</h3>
-              <p className="text-gray-600">${product.price}</p>
-              <Link to={`/client/product-detail/${product.id}`} className="block text-center mt-2 text-blue-500 hover:underline">
-                Xem chi tiết
-              </Link>
-            </div>
-          ))}
-        </div>
+  <h2 className="text-3xl text-lime-900 font-bold text-center">List Product</h2>
+  
+  {/* Grid container */}
+  <div className="grid grid-cols-4 gap-6 mt-6 max-w-[1200px] mx-auto">
+    {products.map((product) => (
+      <div key={product.id} className="relative group overflow-hidden w-[250px] h-[400px]">
+        <img
+          src={product.image}
+          className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+        />
+        <Link
+          to={`/product-detail/${product.id}`}
+          className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 
+                     bg-blue-500 text-white px-4 py-2 opacity-0 group-hover:opacity-100 
+                     transition-opacity duration-300"
+        >
+          Xem chi tiết
+        </Link>
       </div>
+    ))}
+  </div>
+</div>
+
+{/* Button điều hướng */}
+<div className="flex justify-center mb-6">
+  <Link
+    to="/list-product"
+    className="border border-black text-black py-2 px-6 rounded-sm hover:bg-black hover:text-white transition-colors duration-300"
+  >
+    XEM TẤT CẢ SẢN PHẨM MỚI
+  </Link>
+</div>
+
+
+
+
+
+      
+
+    
+
+
+
+
+
+
+
 
       {/* 🌟 Featured Products */}
       {/* 🌟 Featured Products */}

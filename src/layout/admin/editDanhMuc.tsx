@@ -28,7 +28,7 @@ const EditDanhMuc = (props: Props) => {
         try {
             const {data} = await axios.put(`http://localhost:3000/categories/${id}`,product)
             alert('Cập nhật thành công')
-            navigate('/dashboard')
+            navigate('/dashboard/danhmuc')
         } catch (error) {
             console.log(error);            
         }

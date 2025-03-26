@@ -17,6 +17,7 @@ import ListClient from './layout/cilent/listproduct'
 import Detail from './layout/cilent/detailproduct'
 import Login from './layout/cilent/login'
 import Register from './layout/cilent/register'
+import DetailUser from './layout/cilent/userdetail'
 
 function App() {
     // Khai báo routes
@@ -33,12 +34,13 @@ function App() {
 
         // {path:'/product-edit/:id',element:<EditProduct/>}
       ]},
-      {path:'/client',element:<ClientLayout/>,children:[
+      {path:'/',element:<ClientLayout/>,children:[
        {path:'',element:<HomeClient/>},
-       {path:'list-product',element:<ListClient/>},
+       {path:'list-product/:id',element:<ListClient/>},
        {path:'product-detail/:id',element:<Detail/>},
        {path:'dang-ky',element:<Register/>},
        {path:'dang-nhap',element:<Login/>},
+       {path:'user-detail/:id',element:<DetailUser/>},
        
 
       ]}

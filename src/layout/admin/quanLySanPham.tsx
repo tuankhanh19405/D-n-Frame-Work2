@@ -43,7 +43,7 @@ const Home: React.FC = () => {
     <div className="container mx-auto px-6 py-6">
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-2xl font-extrabold text-center text-gray-800">DANH SÁCH SẢN PHẨM</h1>
-        <Link to="/product-add" className="text-blue-600 border border-blue-600 hover:bg-blue-600 hover:text-white font-semibold py-2 px-4 rounded-lg transition-all">+ Thêm sản phẩm</Link>
+        <Link to="/dashboard/product-add" className="text-blue-600 border border-blue-600 hover:bg-blue-600 hover:text-white font-semibold py-2 px-4 rounded-lg transition-all">+ Thêm sản phẩm</Link>
       </div>
       <div className="overflow-x-auto bg-white text-gray-800 shadow-lg rounded-lg">
         <table className="min-w-full table-auto text-base text-left text-gray-700">
@@ -71,7 +71,7 @@ const Home: React.FC = () => {
                     {categories.find((category) => category.id === product.category_id)?.name || 'Không có'}
                   </td>
                   <td className="px-6 py-4 border-b flex justify-center space-x-2">
-                    <Link to={`/product-edit/${product.id}`} className="text-green-600 border border-green-600 hover:bg-green-600 hover:text-white font-semibold py-2 px-4 rounded-lg transition-all">Sửa</Link>
+                    <Link to={`/dashboard/product-edit/${product.id}`} className="text-green-600 border border-green-600 hover:bg-green-600 hover:text-white font-semibold py-2 px-4 rounded-lg transition-all">Sửa</Link>
                     <button onClick={() => delProduct(product.id)} className="text-red-600 border border-red-600 hover:bg-red-600 hover:text-white font-semibold py-2 px-4 rounded-lg transition-all">Xóa</button>
                   </td>
                 </tr>

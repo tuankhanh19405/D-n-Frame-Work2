@@ -57,7 +57,7 @@ const DanhMucDB = () => {
                           onClick={() => removeProduct(item.id)} 
                           className="text-red-600 border border-red-600 hover:bg-red-600 hover:text-white font-semibold py-2 px-4 rounded-lg transition-all">Xoá
                         </button>
-                        <Link to={`/dashboard/category-edit/${item.id}`} className="text-green-600 border border-green-600 hover:bg-green-600 hover:text-white font-semibold py-2 px-4 rounded-lg transition-all">Sửa</Link>
+                        <Link to={`/dashboard/danhmuc-edit/${item.id}`} className="text-green-600 border border-green-600 hover:bg-green-600 hover:text-white font-semibold py-2 px-4 rounded-lg transition-all">Sửa</Link>
                       </div>
                     </td>
                   </tr>

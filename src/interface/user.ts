@@ -4,6 +4,7 @@ export interface IUser{
     email : string,
     phone : string,
     password : string ,
+    role: string,
 }
 
 export interface IRegister extends IUser{
