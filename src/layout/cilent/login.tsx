@@ -4,24 +4,21 @@ import axios from 'axios'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 
-type Props = {}
-
-const Login = (props: Props) => {
+const Login = () => {
     const { register, handleSubmit, formState: { errors } } = useForm<ILoginForm>()
     const navigate = useNavigate()
 
     const onSubmit = async (user: ILoginForm) => {
         try {
             const { data } = await axios.post(`http://localhost:3000/login`, user);
-            console.log('DATA:', data); // 👈 Xem rõ
-    
-            // Nếu API trả về { user: { ... }, accessToken: '...' }
+            console.log('DATA:', data);
+
             if (data.user) {
                 localStorage.setItem('user', JSON.stringify(data.user));
             } else {
                 localStorage.setItem('user', JSON.stringify(data)); // fallback
             }
-    
+
             alert('Đăng nhập thành công');
             navigate('/');
         } catch (error: any) {
@@ -29,33 +26,37 @@ const Login = (props: Props) => {
             console.log(error);
         }
     };
-    
 
     return (
-        <div className='max-w-md mx-auto py-10 bg-green-50 shadow-lg rounded-md p-6'>
-            <h1 className='font-bold text-[24px] text-center text-green-700'>Đăng nhập tài khoản</h1>
+        <div className="max-w-lg mx-auto py-12">
+            <h1 className="text-center text-2xl font-bold mb-6">ĐĂNG NHẬP TÀI KHOẢN</h1>
             <form 
                 onSubmit={handleSubmit(onSubmit)} 
-                className='flex flex-col gap-4 mt-4'
+                className="bg-white shadow-md rounded-md p-6 space-y-4"
             >
-                <input 
-                    type='text' 
-                    placeholder='Email' 
-                    {...register("email", { pattern: /^\S+@\S+\.\S+$/, required: true })}
-                    className='border py-2 px-3 rounded-md focus:ring focus:ring-green-300 outline-none'
-                />
-                {errors.email && <span className='text-red-600 text-sm'>Email không đúng định dạng</span>}
+                <div>
+                    <label className="block font-medium mb-1">Email</label>
+                    <input 
+                        type="email" 
+                        {...register("email", { pattern: /^\S+@\S+\.\S+$/, required: true })}
+                        className="w-full border border-gray-300 px-3 py-2 rounded-md outline-none focus:border-black"
+                    />
+                    {errors.email && <span className="text-red-500 text-sm">Email không hợp lệ</span>}
+                </div>
 
-                <input 
-                    type='password' 
-                    placeholder='Mật khẩu' 
-                    {...register("password", { required: true })}
-                    className='border py-2 px-3 rounded-md focus:ring focus:ring-green-300 outline-none'
-                />
-                {errors.password && <span className='text-red-600 text-sm'>Mật khẩu không được để trống</span>}
+                <div>
+                    <label className="block font-medium mb-1">Mật khẩu</label>
+                    <input 
+                        type="password" 
+                        {...register("password", { required: true })}
+                        className="w-full border border-gray-300 px-3 py-2 rounded-md outline-none focus:border-black"
+                    />
+                    {errors.password && <span className="text-red-500 text-sm">Mật khẩu không được để trống</span>}
+                </div>
 
                 <button 
-                    className='bg-green-400 hover:bg-green-500 text-white font-medium py-2 px-4 rounded-md transition disabled:bg-gray-300'
+                    type="submit"
+                    className="w-full border border-black text-black py-2 rounded-md font-medium transition hover:bg-black hover:text-white"
                 >
                     Đăng nhập
                 </button>
@@ -64,4 +65,4 @@ const Login = (props: Props) => {
     )
 }
 
-export default Login
+export default Login;

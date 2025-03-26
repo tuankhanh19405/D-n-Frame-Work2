@@ -36,7 +36,7 @@ function App() {
       ]},
       {path:'/',element:<ClientLayout/>,children:[
        {path:'',element:<HomeClient/>},
-       {path:'list-product',element:<ListClient/>},
+       {path:'list-product/:id',element:<ListClient/>},
        {path:'product-detail/:id',element:<Detail/>},
        {path:'dang-ky',element:<Register/>},
        {path:'dang-nhap',element:<Login/>},

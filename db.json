@@ -76,7 +76,8 @@
       "name": "Phan Tuấn Khanh",
       "phone": "0961301419",
       "repassword": "123456",
-      "id": 1
+      "id": 1,
+      "role": "admin"
     }
   ]
 }
