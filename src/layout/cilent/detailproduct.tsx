@@ -1,14 +1,15 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { IProduct } from "../../interface/products";
-
+import { useCart } from "./CartContext";
 const ProductDetail = () => {
   const { id } = useParams();
+  const { addToCart } = useCart();
   const [product, setProduct] = useState<IProduct | null>(null);
   const [loading, setLoading] = useState(true);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
-
+  const [quantity, setQuantity] = useState(1);
   useEffect(() => {
     const fetchProduct = async () => {
       try {
@@ -89,16 +90,44 @@ const ProductDetail = () => {
           </div>
 
           {/* Chọn số lượng */}
+         
           <div className="flex items-center gap-4">
-            <button className="px-3 py-2 bg-gray-200 rounded">-</button>
-            <span className="text-lg font-semibold">1</span>
-            <button className="px-3 py-2 bg-gray-200 rounded">+</button>
-          </div>
+  <button 
+    className="px-3 py-2 bg-gray-200 rounded"
+    onClick={() => setQuantity(Math.max(1, quantity - 1))}
+  >
+    -
+  </button>
+  <span className="text-lg font-semibold">{quantity}</span>
+  <button 
+    className="px-3 py-2 bg-gray-200 rounded"
+    onClick={() => setQuantity(quantity + 1)}
+  >
+    +
+  </button>
+</div>
 
-          {/* Nút thêm vào giỏ hàng */}
-          <button className="w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-lg font-semibold">
-            Thêm vào giỏ hàng
-          </button>
+<button 
+  className="w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-lg font-semibold"
+  onClick={() => {
+    if (product) {
+      console.log("🛍 Đang thêm vào giỏ hàng:", product, quantity);
+
+      addToCart({
+        id: product.id,
+        name: product.name,
+        image: product.image,
+        price: product.price,
+        quantity: quantity || 1, 
+      });
+
+      alert("Sản phẩm đã được thêm vào giỏ hàng! 🛒");
+    }
+  }}
+>
+  Thêm vào giỏ hàng
+</button>
+
         </div>
       </div>
 

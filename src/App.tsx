@@ -18,6 +18,7 @@ import Detail from './layout/cilent/detailproduct'
 import Login from './layout/cilent/login'
 import Register from './layout/cilent/register'
 import DetailUser from './layout/cilent/userdetail'
+import Cart from './layout/cilent/cart'
 
 function App() {
     // Khai báo routes
@@ -41,7 +42,7 @@ function App() {
        {path:'dang-ky',element:<Register/>},
        {path:'dang-nhap',element:<Login/>},
        {path:'user-detail/:id',element:<DetailUser/>},
-       
+       { path: 'cart', element: <Cart /> },
 
       ]}
     ])

@@ -11,7 +11,11 @@ const ClientHeader = ({ onSearch }: { onSearch: (query: string) => void }) => {
   const [user, setUser] = useState<{ name: string; role: string; id: number } | null>(null);
   const categoryTimeoutRef = useRef<any>(null);
   const accountTimeoutRef = useRef<any>(null);
-
+  const [cartCount, setCartCount] = useState(0);
+  useEffect(() => {
+    const cart = JSON.parse(localStorage.getItem("cart") || "[]");
+    setCartCount(cart.length);
+  }, []);
   useEffect(() => {
     // Lấy danh mục sản phẩm từ JSON Server
     const fetchCategories = async () => {
@@ -109,10 +113,15 @@ const ClientHeader = ({ onSearch }: { onSearch: (query: string) => void }) => {
             )}
           </div>
 
-          <span className="flex items-center cursor-pointer">
+          <Link to="/cart" className="relative flex items-center cursor-pointer">
             <FaShoppingCart className="mr-1" />
             Cart
-          </span>
+            {cartCount > 0 && (
+              <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
+                {cartCount}
+              </span>
+            )}
+          </Link>
         </div>
       </div>
 
