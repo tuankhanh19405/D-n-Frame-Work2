@@ -100,21 +100,22 @@ const Home: React.FC<Props> = () => {
 
       {/* 🌟 Featured Products */}
       {/* 🌟 Featured Products */}
-<div className="w-full px-6 mt-10 text-center">
+      <div className="w-full px-6 mt-10 text-center">
   <h2 className="text-3xl font-bold text-lime-900">Kategorien</h2>
-  <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-6 max-w-5xl mx-auto">
+  <div className="grid grid-cols-2 grid-rows-2 gap-6 mt-6 max-w-5xl mx-auto">
     {categories.map((category) => (
       <div key={category.id} className="relative rounded-lg overflow-hidden">
         <img src={category.image} alt={category.name} className="w-full h-[250px] object-cover" />
         <div className="absolute inset-0 bg-black bg-opacity-30 flex items-end p-4">
           <h3 className="text-white font-semibold">
-            <Link to="/detail" className="hover:underline">{category.name}</Link>
+            <Link to={`/list-product/${category.id}`} className="hover:underline">{category.name}</Link>
           </h3>
         </div>
       </div>
     ))}
   </div>
 </div>
+
 
 
       {/* 🌟 Newsletter Section */}

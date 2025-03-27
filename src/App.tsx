@@ -19,6 +19,8 @@ import Login from './layout/cilent/login'
 import Register from './layout/cilent/register'
 import DetailUser from './layout/cilent/userdetail'
 import Cart from './layout/cilent/cart'
+import User from './layout/admin/quanLyNguoiDung'
+import EditUser from './layout/cilent/editUser'
 
 function App() {
     // Khai báo routes
@@ -32,6 +34,8 @@ function App() {
         {path:'danhmuc-edit/:id',element:<EditDanhMuc/>},
         {path:'product-edit/:id',element:<EditProduct/>},
         {path:'danhmuc',element:<DanhMucDB/>},
+        {path:'user',element:<User/>},
+
 
         // {path:'/product-edit/:id',element:<EditProduct/>}
       ]},
@@ -42,6 +46,7 @@ function App() {
        {path:'dang-ky',element:<Register/>},
        {path:'dang-nhap',element:<Login/>},
        {path:'user-detail/:id',element:<DetailUser/>},
+       {path:'user-edit/:id',element:<EditUser/>},
        { path: 'cart', element: <Cart /> },
 
       ]}
