@@ -110,6 +110,13 @@ const ProductDetail = () => {
 <button 
   className="w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-lg font-semibold"
   onClick={() => {
+    const user = localStorage.getItem("user"); 
+if (!user) {
+  alert("Bạn cần đăng nhập để thêm sản phẩm vào giỏ hàng.");
+  window.location.href = "/dang-nhap"; 
+  return;
+}
+
     if (product) {
       console.log("🛍 Đang thêm vào giỏ hàng:", product, quantity);
 
@@ -127,6 +134,7 @@ const ProductDetail = () => {
 >
   Thêm vào giỏ hàng
 </button>
+
 
         </div>
       </div>
@@ -193,8 +201,6 @@ const ProductDetail = () => {
     </div>
   </div>
 </div>
-
-
       {/* 🌟 Footer Placeholder */}
       <div className="h-32"></div>
     </div>

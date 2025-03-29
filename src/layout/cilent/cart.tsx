@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-
+import axios from "axios";
 type CartItem = {
   id: number;
   name: string;
@@ -12,32 +12,63 @@ type CartItem = {
 const Cart: React.FC = () => {
   const [cart, setCart] = useState<CartItem[]>([]);
 
+  // Load giỏ hàng từ localStorage khi trang load
   useEffect(() => {
+    const user = JSON.parse(localStorage.getItem("user") || "null");
     const storedCart = localStorage.getItem("cart");
-    if (storedCart) {
-      setCart(JSON.parse(storedCart));
-    }
-  }, []);
 
-  useEffect(() => {
-    if (cart.length > 0) {
-      localStorage.setItem("cart", JSON.stringify(cart));
+    if (user) {
+        axios.get(`http://localhost:3000/cart/${user.id}`)
+            .then(res => {
+                if (res.data && res.data.length > 0) {
+                    localStorage.setItem('cart', JSON.stringify(res.data));
+                    setCart(res.data);
+                } else if (storedCart) {
+                    setCart(JSON.parse(storedCart));
+                } else {
+                    setCart([]);
+                }
+            })
+            .catch(err => {
+                console.error("Lỗi lấy giỏ hàng:", err);
+                if (storedCart) {
+                    setCart(JSON.parse(storedCart));
+                }
+            });
+    } else {
+        setCart(storedCart ? JSON.parse(storedCart) : []);
     }
-  }, [cart]);
-  const removeFromCart = (id: number) => {
-    const updatedCart = cart.filter((item) => item.id !== id);
-    setCart(updatedCart);
+}, []);
+
+
+
+  // Hàm cập nhật giỏ hàng và lưu vào localStorage
+  const setCartAndSave = (newCart: CartItem[]) => {
+    setCart(newCart);
+    localStorage.setItem("cart", JSON.stringify(newCart));
   };
 
+  // Xóa sản phẩm khỏi giỏ hàng
+  const removeFromCart = (id: number) => {
+    const updatedCart = cart.filter((item) => item.id !== id);
+    setCartAndSave(updatedCart);
+  };
+
+  // Cập nhật số lượng sản phẩm
   const updateQuantity = (id: number, quantity: number) => {
     if (quantity < 1) {
       alert("Số lượng phải lớn hơn 0!");
       return;
     }
-    setCart((prev) =>
-      prev.map((item) => (item.id === id ? { ...item, quantity } : item))
+    setCartAndSave(
+      cart.map((item) =>
+        item.id === id ? { ...item, quantity } : item
+      )
     );
   };
+
+  // Tính tổng tiền
+  const totalPrice = cart.reduce((total, item) => total + item.price * item.quantity, 0);
 
   return (
     <div className="container mx-auto p-6">
@@ -85,8 +116,10 @@ const Cart: React.FC = () => {
                       className="w-12 text-center border mx-2"
                       onChange={(e) => {
                         const value = Number(e.target.value);
-                        if (!isNaN(value)) {
+                        if (value >= 1) {
                           updateQuantity(item.id, value);
+                        } else {
+                          alert("Số lượng phải lớn hơn 0!");
                         }
                       }}
                     />
@@ -108,28 +141,30 @@ const Cart: React.FC = () => {
             ))}
           </div>
 
-          <h3 className="text-xl font-semibold mt-6">
-            Tổng tiền:{" "}
-            {cart
-              .reduce((total, item) => total + item.price * item.quantity, 0)
-              .toLocaleString("vi-VN", { style: "currency", currency: "VND" })}
-          </h3>
-          
-  <div className="flex justify-between mt-4">
-  <button 
-    onClick={() => window.location.href = "/"} 
-    className="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-lg"
-  >
-    Tiếp tục mua sắm
-  </button>
+          {cart.length > 0 && (
+            <h3 className="text-xl font-semibold mt-6">
+              Tổng tiền:{" "}
+              {totalPrice.toLocaleString("vi-VN", {
+                style: "currency",
+                currency: "VND",
+              })}
+            </h3>
+          )}
 
-  <button 
-    className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg ml-auto"
-  >
-    Thanh toán
-  </button>
-</div>
+          <div className="flex justify-between mt-4">
+            <button
+              onClick={() => window.location.href = "/"}
+              className="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-lg"
+            >
+              Tiếp tục mua sắm
+            </button>
 
+            <button
+              className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg ml-auto"
+            >
+              Thanh toán
+            </button>
+          </div>
         </>
       )}
     </div>

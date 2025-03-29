@@ -1,5 +1,5 @@
-import axios from 'axios'
 import React from 'react'
+import axios from 'axios'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { IRegisterForm } from '../../interface/user'
@@ -10,7 +10,7 @@ const Register = () => {
 
     const onSubmit = async (user: IRegisterForm) => {
         try {
-            const { data } = await axios.post(`http://localhost:3000/register`, user)
+            const {data} = await axios.post(`http://localhost:3000/register`, user)
             alert('Đăng ký thành công')
             navigate('/dang-nhap')
         } catch (error: any) {
@@ -18,7 +18,6 @@ const Register = () => {
             console.log(error);
         }
     }
-
     return (
         <div className="max-w-lg mx-auto py-12">
             <h1 className="text-center text-2xl font-bold mb-6">ĐĂNG KÝ TÀI KHOẢN</h1>

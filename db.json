@@ -78,6 +78,38 @@
       "repassword": "123456",
       "id": 1,
       "role": "admin"
+    },
+    {
+      "email": "kienntph48528@gmail.com",
+      "password": "$2a$10$pzm46wQJsL8G/gA9T8DTPOhEb4p/6eYURhYMwONw7CIr8fznTMjmO",
+      "name": "kien1",
+      "phone": "0368471101",
+      "repassword": "123456",
+      "id": 2
+    },
+    {
+      "email": "kienntph48528s@gmail.com",
+      "password": "$2a$10$DQ3fEPWxJF1adAja.Nrvy.zH7Pc97t43N8VYozQB8.ejClK/VOhvu",
+      "name": "kien1",
+      "phone": "0368471101",
+      "repassword": "123456",
+      "id": 3
     }
-  ]
+  ],
+  "cart": [
+  {
+    "userId": 1,
+    "items": [
+      { "productId": 1, "quantity": 2 },
+      { "productId": 2, "quantity": 1 }
+    ]
+  },
+  {
+    "userId": 2,
+    "items": []
+  }
+]
 }
+
+  
+

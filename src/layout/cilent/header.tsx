@@ -1,8 +1,9 @@
 import { useState, useEffect, useRef } from "react";
 import { FaSearch, FaChevronDown, FaUser, FaShoppingCart } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { useCart } from "../cilent/CartContext";
 import axios from "axios";
-
+import { useNavigate } from "react-router-dom";
 const ClientHeader = ({ onSearch }: { onSearch: (query: string) => void }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [isCategoryOpen, setIsCategoryOpen] = useState(false);
@@ -12,6 +13,7 @@ const ClientHeader = ({ onSearch }: { onSearch: (query: string) => void }) => {
   const categoryTimeoutRef = useRef<any>(null);
   const accountTimeoutRef = useRef<any>(null);
   const [cartCount, setCartCount] = useState(0);
+  const navigate = useNavigate();
   useEffect(() => {
     const cart = JSON.parse(localStorage.getItem("cart") || "[]");
     setCartCount(cart.length);
@@ -34,11 +36,16 @@ const ClientHeader = ({ onSearch }: { onSearch: (query: string) => void }) => {
       setUser(JSON.parse(storedUser));
     }
   }, []);
-
   const handleLogout = () => {
     localStorage.removeItem("user");
+    localStorage.removeItem("token");
+    localStorage.removeItem("cart"); // ❌ Xóa giỏ hàng trên client nhưng giữ trên server
+
+    alert('Bạn đã đăng xuất');
     setUser(null);
-  };
+    window.location.reload();
+};
+
 
   return (
     <header className="bg-gradient-to-br from-gray-500 to-gray-700 w-full relative z-10">

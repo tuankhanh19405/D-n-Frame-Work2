@@ -19,7 +19,8 @@ import Login from './layout/cilent/login'
 import Register from './layout/cilent/register'
 import DetailUser from './layout/cilent/userdetail'
 import Cart from './layout/cilent/cart'
-
+import CheckoutSuccess from './layout/cilent/CheckoutSuccess'
+import OrderPage from './layout/cilent/OrderPage'
 function App() {
     // Khai báo routes
     const routes = useRoutes([
@@ -43,7 +44,8 @@ function App() {
        {path:'dang-nhap',element:<Login/>},
        {path:'user-detail/:id',element:<DetailUser/>},
        { path: 'cart', element: <Cart /> },
-
+       { path: "checkout-success", element: <CheckoutSuccess /> },
+       { path: "orders", element: <OrderPage /> },
       ]}
     ])
     return routes
