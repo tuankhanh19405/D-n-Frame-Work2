@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { FaSearch, FaChevronDown, FaUser, FaShoppingCart } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { useCart } from "./CartContext";
 
 const ClientHeader = ({ onSearch }: { onSearch: (query: string) => void }) => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -35,10 +36,22 @@ const ClientHeader = ({ onSearch }: { onSearch: (query: string) => void }) => {
     }
   }, []);
 
+  const { setCart } = useCart(); // ✅ Lấy setCart từ CartContext
+
   const handleLogout = () => {
-    localStorage.removeItem("user");
-    setUser(null);
+      const user = JSON.parse(localStorage.getItem("user") || "{}"); // 🔹 Lưu user trước khi xóa
+      if (user.id) {
+          localStorage.removeItem(`cart_${user.id}`); // ✅ Xóa giỏ hàng của user
+          alert("đăng xuất thành công")
+      }
+  
+      localStorage.removeItem("user"); // ✅ Sau đó mới xóa user
+  
+      setCart([]); // ✅ Xóa giỏ hàng khỏi state
   };
+  
+
+
 
   return (
     <header className="bg-gradient-to-br from-gray-500 to-gray-700 w-full relative z-10">
@@ -175,3 +188,7 @@ const ClientHeader = ({ onSearch }: { onSearch: (query: string) => void }) => {
 };
 
 export default ClientHeader;
+function setCart(arg0: never[]) {
+  throw new Error("Function not implemented.");
+}
+

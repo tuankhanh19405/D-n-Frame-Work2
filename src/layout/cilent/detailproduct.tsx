@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { IProduct } from "../../interface/products";
 import { useCart } from "./CartContext";
@@ -10,6 +10,7 @@ const ProductDetail = () => {
   const [loading, setLoading] = useState(true);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [quantity, setQuantity] = useState(1);
+  const navigate = useNavigate();
   useEffect(() => {
     const fetchProduct = async () => {
       try {
@@ -89,44 +90,46 @@ const ProductDetail = () => {
             )}
           </div>
 
-          {/* Chọn số lượng */}
-         
-          <div className="flex items-center gap-4">
-  <button 
-    className="px-3 py-2 bg-gray-200 rounded"
-    onClick={() => setQuantity(Math.max(1, quantity - 1))}
-  >
-    -
-  </button>
-  <span className="text-lg font-semibold">{quantity}</span>
-  <button 
-    className="px-3 py-2 bg-gray-200 rounded"
-    onClick={() => setQuantity(quantity + 1)}
-  >
-    +
-  </button>
-</div>
+         {/* Nút tăng giảm số lượng */}
+      <div className="flex items-center space-x-3">
+        <button 
+          className="px-3 py-2 bg-gray-200 rounded"
+          onClick={() => setQuantity(Math.max(1, quantity - 1))}
+        >
+          -
+        </button>
+        <span className="text-lg font-semibold">{quantity}</span>
+        <button 
+          className="px-3 py-2 bg-gray-200 rounded"
+          onClick={() => setQuantity(quantity + 1)}
+        >
+          +
+        </button>
+      </div>
 
-<button 
-  className="w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-lg font-semibold"
-  onClick={() => {
-    if (product) {
-      console.log("🛍 Đang thêm vào giỏ hàng:", product, quantity);
+      {/* Nút thêm vào giỏ hàng */}
+      <button 
+        className="w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-lg font-semibold"
+        onClick={() => {
+          const user = localStorage.getItem("user"); // Kiểm tra user đăng nhập
+          if (!user) {
+            alert("Vui lòng đăng nhập để thêm sản phẩm vào giỏ hàng!");
+            navigate("/dang-nhap"); // Điều hướng đến trang đăng nhập
+            return;
+          }
 
-      addToCart({
-        id: product.id,
-        name: product.name,
-        image: product.image,
-        price: product.price,
-        quantity: quantity || 1, 
-      });
+          if (product) {
+            console.log("🛍 Đang thêm vào giỏ hàng:", product, quantity); // ✅ Kiểm tra quantity
 
-      alert("Sản phẩm đã được thêm vào giỏ hàng! 🛒");
-    }
-  }}
->
-  Thêm vào giỏ hàng
-</button>
+            addToCart(product, quantity); // ✅ Truyền số lượng vào addToCart
+
+            alert("Sản phẩm đã được thêm vào giỏ hàng! 🛒");
+          }
+        }}
+      >
+        Thêm vào giỏ hàng
+      </button>
+
 
         </div>
       </div>

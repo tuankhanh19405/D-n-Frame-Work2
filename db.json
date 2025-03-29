@@ -78,6 +78,14 @@
       "repassword": "123456",
       "id": 1,
       "role": "admin"
+    },
+    {
+      "email": "kien@gmail.com",
+      "password": "$2a$10$.qewmu/wSCriika4HKKISeuTlUs0fzc28OKUX02UtrJ0pZOHBzgj2",
+      "name": "Nguyễn Trung Kiên",
+      "phone": "0961301419",
+      "repassword": "123456",
+      "id": 2
     }
   ]
 }

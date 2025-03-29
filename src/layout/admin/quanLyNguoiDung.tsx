@@ -11,8 +11,7 @@ const User: React.FC = () => {
     const fetchData = async () => {
       try {
         const { data } = await axios.get('http://localhost:3000/users');
-        const nonAdminUsers = data.filter((user: any) => user.role !== 'admin'); // Lọc bỏ admin
-        setProducts(nonAdminUsers);
+        setProducts(data);
       } catch (error) {
         console.error('Lỗi khi lấy dữ liệu:', error);
       }
@@ -62,8 +61,15 @@ const User: React.FC = () => {
                   <td className="px-6 py-4 border-b font-medium text-gray-800">{product.phone}</td>
                  
                   <td className="px-6 py-4 border-b flex justify-center space-x-2">
-                    <button onClick={() => delProduct(product.id)} className="text-red-600 border border-red-600 hover:bg-red-600 hover:text-white font-semibold py-2 px-4 rounded-lg transition-all">Xóa</button>
-                  </td>
+        {product.role !== "admin" && ( // Ẩn nút nếu là admin
+          <button
+            onClick={() => delProduct(product.id)}
+            className="text-red-600 border border-red-600 hover:bg-red-600 hover:text-white font-semibold py-2 px-4 rounded-lg transition-all"
+          >
+            Xóa
+          </button>
+        )}
+      </td>
                 </tr>
               ))
             ) : (

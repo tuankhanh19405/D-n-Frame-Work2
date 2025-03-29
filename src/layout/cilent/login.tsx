@@ -3,29 +3,36 @@ import { ILoginForm } from '../../interface/user'
 import axios from 'axios'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
+import { useCart } from './CartContext'
 
 const Login = () => {
     const { register, handleSubmit, formState: { errors } } = useForm<ILoginForm>()
     const navigate = useNavigate()
+    const { setCart } = useCart();  // ✅ Lấy setCart từ CartContext
 
     const onSubmit = async (user: ILoginForm) => {
         try {
             const { data } = await axios.post(`http://localhost:3000/login`, user);
-            console.log('DATA:', data);
 
             if (data.user) {
-                localStorage.setItem('user', JSON.stringify(data.user));
-            } else {
-                localStorage.setItem('user', JSON.stringify(data)); // fallback
+                localStorage.setItem("user", JSON.stringify(data.user));
             }
 
-            alert('Đăng nhập thành công');
-            navigate('/');
+            // ✅ Khôi phục giỏ hàng sau khi đăng nhập
+            const savedCart = localStorage.getItem(`cart_${data.user.id}`);
+            if (savedCart) {
+                setCart(JSON.parse(savedCart));
+            }
+
+            alert("Đăng nhập thành công!");
+            navigate("/");
         } catch (error: any) {
             alert(error.response?.data || error.message);
             console.log(error);
         }
     };
+    
+
 
     return (
         <div className="max-w-lg mx-auto py-12">
