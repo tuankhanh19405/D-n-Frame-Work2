@@ -7,10 +7,12 @@ interface CartItem extends IProduct {
 
 interface CartContextType {
   cart: CartItem[];
+  setCart: (cart: CartItem[]) => void; // ✅ Thêm setCart
   addToCart: (product: IProduct, quantity: number) => void;
   removeFromCart: (id: string) => void;
   clearCart: () => void;
 }
+
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
@@ -66,8 +68,9 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
   };
 
   return (
-    <CartContext.Provider value={{ cart, addToCart, removeFromCart, clearCart }}>
+    <CartContext.Provider value={{ cart, setCart, addToCart, removeFromCart, clearCart }}>
       {children}
     </CartContext.Provider>
   );
+  
 };
