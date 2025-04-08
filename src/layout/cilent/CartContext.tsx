@@ -1,7 +1,7 @@
 import { createContext, useContext, useState, ReactNode, useEffect } from "react";
 import axios from "axios";
 import { IProduct } from "../../interface/products";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom"; // Keep this import at the top
 
 interface CartItem extends IProduct {
   quantity: number;
@@ -9,11 +9,9 @@ interface CartItem extends IProduct {
 
 interface Order {
   id: string;
-  userId: string;
   items: CartItem[];
   total: number;
   date: string;
-  status: string; // Thêm trạng thái đơn hàng
 }
 
 interface CartContextType {
@@ -23,7 +21,7 @@ interface CartContextType {
   clearCart: () => void;
   checkout: () => void;
   orders: Order[];
-  updateOrderStatus: (orderId: string, status: string) => void;
+  updateQuantity: (id: string, quantity: number) => void;  // Added updateQuantity here
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -31,13 +29,12 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 export const useCart = () => {
   const context = useContext(CartContext);
   if (!context) {
-    throw new Error("useCart phải được sử dụng trong CartProvider");
+    throw new Error("useCart must be used within a CartProvider");
   }
   return context;
 };
 
 export const CartProvider = ({ children }: { children: ReactNode }) => {
-  const navigate = useNavigate(); // Di chuyển vào trong component
   const [cart, setCart] = useState<CartItem[]>([]);
   const [orders, setOrders] = useState<Order[]>([]);
   const [user, setUser] = useState(() => {
@@ -48,21 +45,41 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     }
   });
 
+  const navigate = useNavigate(); // Move useNavigate inside the component
+
+  const updateQuantity = (id: string, quantity: number) => {
+    setCart((prevCart) => {
+      const updated = prevCart.map((item) =>
+        item.id === id ? { ...item, quantity } : item
+      );
+      setCartAndSave(updated);
+      return updated;
+    });
+  };
+
   useEffect(() => {
     if (user) {
       const fetchCartFromServer = async () => {
         try {
           const response = await axios.get(`http://localhost:3000/cart/${user.id}`);
-          setCart(response.data || []);
-          localStorage.setItem("cart", JSON.stringify(response.data || []));
+          setCart(response.data.items || []);
+          localStorage.setItem("cart", JSON.stringify(response.data.items || []));
         } catch (error) {
-          console.error("Lỗi khi tải giỏ hàng từ server:", error);
+          if (axios.isAxiosError(error) && error.response?.status === 404) {
+            console.warn(`Giỏ hàng cho user ${user.id} không tồn tại. Tạo giỏ hàng mới...`);
+            const newCart = { userId: user.id, items: [] };
+            await axios.post(`http://localhost:3000/cart`, newCart);
+            setCart([]);
+            localStorage.setItem("cart", JSON.stringify([]));
+          } else {
+            console.error("Lỗi khi tải giỏ hàng từ server:", error);
+          }
         }
       };
 
       const fetchOrdersFromServer = async () => {
         try {
-          const response = await axios.get(`http://localhost:3000/orders?userId=${user.id}`);
+          const response = await axios.get(`http://localhost:3000/orders/${user.id}`);
           setOrders(response.data || []);
         } catch (error) {
           console.error("Lỗi khi tải đơn hàng từ server:", error);
@@ -77,7 +94,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
   const updateCartOnServer = async (cart: CartItem[]) => {
     if (user) {
       try {
-        await axios.put(`http://localhost:3000/cart/${user.id}`, cart);
+        await axios.put(`http://localhost:3000/cart/${user.id}`, { userId: user.id, items: cart });
       } catch (error) {
         console.error("Lỗi cập nhật giỏ hàng trên server:", error);
       }
@@ -147,31 +164,15 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
       setOrders((prevOrders) => [...prevOrders, order]);
       clearCart();
       alert("Thanh toán thành công! Đơn hàng của bạn đã được lưu.");
-      navigate("/orders"); // Chuyển hướng đến trang quản lý đơn hàng
+      navigate("/checkout-success");
     } catch (error) {
       console.error("Lỗi khi xử lý thanh toán:", error);
       alert("Đã xảy ra lỗi khi xử lý thanh toán.");
     }
   };
 
-  const updateOrderStatus = async (orderId: string, status: string) => {
-    try {
-      await axios.patch(`http://localhost:3000/orders/${orderId}`, { status });
-      setOrders((prevOrders) =>
-        prevOrders.map((order) =>
-          order.id === orderId ? { ...order, status } : order
-        )
-      );
-    } catch (error) {
-      console.error("Lỗi khi cập nhật trạng thái đơn hàng:", error);
-      alert("Đã xảy ra lỗi khi cập nhật trạng thái đơn hàng.");
-    }
-  };
-
   return (
-    <CartContext.Provider
-      value={{ cart, addToCart, removeFromCart, clearCart, checkout, orders, updateOrderStatus }}
-    >
+    <CartContext.Provider value={{ cart, addToCart, removeFromCart, clearCart, checkout, orders, updateQuantity }}>
       {children}
     </CartContext.Provider>
   );

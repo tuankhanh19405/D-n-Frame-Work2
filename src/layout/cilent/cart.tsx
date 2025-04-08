@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
+
+// Định nghĩa kiểu dữ liệu cho sản phẩm trong giỏ hàng
 type CartItem = {
   id: number;
   name: string;
@@ -10,65 +11,68 @@ type CartItem = {
 };
 
 const Cart: React.FC = () => {
+  const navigate = useNavigate();
   const [cart, setCart] = useState<CartItem[]>([]);
 
-  // Load giỏ hàng từ localStorage khi trang load
   useEffect(() => {
-    const user = JSON.parse(localStorage.getItem("user") || "null");
-    const storedCart = localStorage.getItem("cart");
-
-    if (user) {
-        axios.get(`http://localhost:3000/cart/${user.id}`)
-            .then(res => {
-                if (res.data && res.data.length > 0) {
-                    localStorage.setItem('cart', JSON.stringify(res.data));
-                    setCart(res.data);
-                } else if (storedCart) {
-                    setCart(JSON.parse(storedCart));
-                } else {
-                    setCart([]);
-                }
-            })
-            .catch(err => {
-                console.error("Lỗi lấy giỏ hàng:", err);
-                if (storedCart) {
-                    setCart(JSON.parse(storedCart));
-                }
-            });
+    // Kiểm tra nếu người dùng đã đăng nhập
+    const userId = localStorage.getItem("userId"); // Giả sử userId lưu trữ trong localStorage
+    if (userId) {
+      // Gọi API để lấy giỏ hàng từ server
+      fetch(`/api/cart/${userId}`)
+        .then((response) => response.json())
+        .then((data) => setCart(data))
+        .catch((error) => console.error("Error loading cart:", error));
     } else {
-        setCart(storedCart ? JSON.parse(storedCart) : []);
+      // Nếu chưa đăng nhập, lấy giỏ hàng từ localStorage
+      const storedCart = localStorage.getItem("cart");
+      if (storedCart) {
+        setCart(JSON.parse(storedCart));
+      }
     }
-}, []);
+  }, []);
 
+  useEffect(() => {
+    const userId = localStorage.getItem("userId");
+    if (userId && cart.length > 0) {
+      // Gọi API để lưu giỏ hàng lên server khi có sự thay đổi
+      fetch(`/api/cart/${userId}`, {
+        method: "PUT", // Cập nhật giỏ hàng
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(cart),
+      })
+        .then((response) => response.json())
+        .catch((error) => console.error("Error saving cart:", error));
+    } else if (cart.length > 0) {
+      // Nếu chưa đăng nhập, lưu giỏ hàng vào localStorage
+      localStorage.setItem("cart", JSON.stringify(cart));
+    }
+  }, [cart]);
 
-
-  // Hàm cập nhật giỏ hàng và lưu vào localStorage
-  const setCartAndSave = (newCart: CartItem[]) => {
-    setCart(newCart);
-    localStorage.setItem("cart", JSON.stringify(newCart));
-  };
-
-  // Xóa sản phẩm khỏi giỏ hàng
   const removeFromCart = (id: number) => {
     const updatedCart = cart.filter((item) => item.id !== id);
-    setCartAndSave(updatedCart);
+    setCart(updatedCart);
   };
 
-  // Cập nhật số lượng sản phẩm
+  const handleCheckout = () => {
+    if (cart.length === 0) {
+      alert("Giỏ hàng của bạn đang trống!");
+      return;
+    }
+    navigate("/checkout"); // Chuyển hướng đến trang thanh toán
+  };
+
   const updateQuantity = (id: number, quantity: number) => {
     if (quantity < 1) {
       alert("Số lượng phải lớn hơn 0!");
       return;
     }
-    setCartAndSave(
-      cart.map((item) =>
-        item.id === id ? { ...item, quantity } : item
-      )
+    setCart((prev) =>
+      prev.map((item) => (item.id === id ? { ...item, quantity } : item))
     );
   };
-
-  // Tính tổng tiền
-  const totalPrice = cart.reduce((total, item) => total + item.price * item.quantity, 0);
 
   return (
     <div className="container mx-auto p-6">
@@ -76,7 +80,7 @@ const Cart: React.FC = () => {
 
       {cart.length === 0 ? (
         <p>
-          Giỏ hàng trống.{" "}
+          Giỏ hàng trống.{' '}
           <Link to="/list-product" className="text-blue-600">
             Mua sắm ngay!
           </Link>
@@ -116,10 +120,8 @@ const Cart: React.FC = () => {
                       className="w-12 text-center border mx-2"
                       onChange={(e) => {
                         const value = Number(e.target.value);
-                        if (value >= 1) {
+                        if (!isNaN(value)) {
                           updateQuantity(item.id, value);
-                        } else {
-                          alert("Số lượng phải lớn hơn 0!");
                         }
                       }}
                     />
@@ -141,15 +143,12 @@ const Cart: React.FC = () => {
             ))}
           </div>
 
-          {cart.length > 0 && (
-            <h3 className="text-xl font-semibold mt-6">
-              Tổng tiền:{" "}
-              {totalPrice.toLocaleString("vi-VN", {
-                style: "currency",
-                currency: "VND",
-              })}
-            </h3>
-          )}
+          <h3 className="text-xl font-semibold mt-6">
+            Tổng tiền:{" "}
+            {cart
+              .reduce((total, item) => total + item.price * item.quantity, 0)
+              .toLocaleString("vi-VN", { style: "currency", currency: "VND" })}
+          </h3>
 
           <div className="flex justify-between mt-4">
             <button
@@ -160,6 +159,7 @@ const Cart: React.FC = () => {
             </button>
 
             <button
+              onClick={handleCheckout}
               className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg ml-auto"
             >
               Thanh toán

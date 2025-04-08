@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FaList, FaBox } from 'react-icons/fa';
+import { FaList, FaBox, FaShoppingCart  } from 'react-icons/fa';
 
 const AdminSidebar = () => {
   return (
@@ -14,6 +14,10 @@ const AdminSidebar = () => {
         <Link to='/dashboard' className='flex items-center space-x-2 p-3 rounded-lg hover:bg-gray-700'>
           <FaBox />
           <span>Quản lý sản phẩm</span>
+        </Link>
+        <Link to='AdminOrders' className='flex items-center space-x-2 p-3 rounded-lg hover:bg-gray-700'>
+        <FaShoppingCart />
+          <span>Quản lý đơn hàng</span>
         </Link>
       </nav>
     </div>

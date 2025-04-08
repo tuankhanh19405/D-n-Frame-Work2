@@ -19,8 +19,9 @@ import Login from './layout/cilent/login'
 import Register from './layout/cilent/register'
 import DetailUser from './layout/cilent/userdetail'
 import Cart from './layout/cilent/cart'
-import CheckoutSuccess from './layout/cilent/CheckoutSuccess'
+import Checkout from './layout/cilent/Checkout'
 import OrderPage from './layout/cilent/OrderPage'
+import AdminOrders from './layout/admin/AdminOrders'
 function App() {
     // Khai báo routes
     const routes = useRoutes([
@@ -33,6 +34,7 @@ function App() {
         {path:'danhmuc-edit/:id',element:<EditDanhMuc/>},
         {path:'product-edit/:id',element:<EditProduct/>},
         {path:'danhmuc',element:<DanhMucDB/>},
+        {path:'AdminOrders',element:<AdminOrders/>},
 
         // {path:'/product-edit/:id',element:<EditProduct/>}
       ]},
@@ -44,8 +46,9 @@ function App() {
        {path:'dang-nhap',element:<Login/>},
        {path:'user-detail/:id',element:<DetailUser/>},
        { path: 'cart', element: <Cart /> },
-       { path: "checkout-success", element: <CheckoutSuccess /> },
+       { path: "checkout", element: <Checkout /> },
        { path: "orders", element: <OrderPage /> },
+
       ]}
     ])
     return routes

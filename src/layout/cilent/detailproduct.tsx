@@ -3,6 +3,16 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import { IProduct } from "../../interface/products";
 import { useCart } from "./CartContext";
+
+// Hàm để cập nhật giỏ hàng lên server
+const updateCartOnServer = async (userId: number, cartItems: any[]) => {
+    try {
+        await axios.put(`http://localhost:3000/cart/${userId}`, { items: cartItems });
+    } catch (error) {
+        console.error("Lỗi khi cập nhật giỏ hàng lên server:", error);
+    }
+};
+
 const ProductDetail = () => {
   const { id } = useParams();
   const { addToCart } = useCart();
@@ -10,6 +20,8 @@ const ProductDetail = () => {
   const [loading, setLoading] = useState(true);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [quantity, setQuantity] = useState(1);
+  const [cart, setCart] = useState<any[]>([]);
+
   useEffect(() => {
     const fetchProduct = async () => {
       try {
@@ -24,6 +36,7 @@ const ProductDetail = () => {
     };
     fetchProduct();
   }, [id]);
+
   interface RatingProps {
     rating: number;
     count: number;
@@ -38,6 +51,52 @@ const ProductDetail = () => {
   ];
   
   const totalReviews = ratings.reduce((sum, r) => sum + r.count, 0);
+
+  // Lấy giỏ hàng từ localStorage khi component load
+  useEffect(() => {
+    const storedCart = localStorage.getItem("cart");
+    if (storedCart) {
+      setCart(JSON.parse(storedCart));
+    }
+  }, []);
+
+  const handleAddToCart = async () => {
+    const user = localStorage.getItem("user"); 
+    if (!user) {
+      alert("Bạn cần đăng nhập để thêm sản phẩm vào giỏ hàng.");
+      window.location.href = "/dang-nhap"; 
+      return;
+    }
+
+    if (product) {
+      console.log("🛍 Đang thêm vào giỏ hàng:", product, quantity);
+
+      // Tạo giỏ hàng mới hoặc lấy giỏ hàng hiện tại
+      const updatedCart = [...cart];
+      const existingItem = updatedCart.find(item => item.id === product.id);
+
+      if (existingItem) {
+        existingItem.quantity += quantity; // Cập nhật số lượng nếu sản phẩm đã có trong giỏ
+      } else {
+        updatedCart.push({
+          id: product.id,
+          name: product.name,
+          image: product.image,
+          price: product.price,
+          quantity,
+        });
+      }
+
+      // Cập nhật giỏ hàng lên server
+      const userInfo = JSON.parse(user);
+      await updateCartOnServer(userInfo.id, updatedCart);
+
+      // Cập nhật giỏ hàng trong localStorage
+      localStorage.setItem("cart", JSON.stringify(updatedCart));
+
+      alert("Sản phẩm đã được thêm vào giỏ hàng! 🛒");
+    }
+  };
 
   if (loading) return <p className="text-center text-lg font-semibold">Đang tải...</p>;
   if (!product) return <p className="text-center text-red-500">Không tìm thấy sản phẩm!</p>;
@@ -55,16 +114,13 @@ const ProductDetail = () => {
           />
           {/* Ảnh thu nhỏ */}
           <div className="flex gap-2 mt-4">
-            {[product.image,product.image2, product.image3 ] 
-            // product.image2, product.image3
+            {[product.image, product.image2, product.image3] 
               .filter((img) => img) // Loại bỏ ảnh null
               .map((img, index) => (
                 <img
                   key={index}
                   src={img}
-                  className={`w-20 h-20 rounded-md cursor-pointer hover:ring-2 ${
-                    selectedImage === img ? "ring-gray-600" : "ring-gray-300"
-                  }`}
+                  className={`w-20 h-20 rounded-md cursor-pointer hover:ring-2 ${selectedImage === img ? "ring-gray-600" : "ring-gray-300"}`}
                   onClick={() => setSelectedImage(img)}
                 />
               ))}
@@ -90,52 +146,29 @@ const ProductDetail = () => {
           </div>
 
           {/* Chọn số lượng */}
-         
           <div className="flex items-center gap-4">
-  <button 
-    className="px-3 py-2 bg-gray-200 rounded"
-    onClick={() => setQuantity(Math.max(1, quantity - 1))}
-  >
-    -
-  </button>
-  <span className="text-lg font-semibold">{quantity}</span>
-  <button 
-    className="px-3 py-2 bg-gray-200 rounded"
-    onClick={() => setQuantity(quantity + 1)}
-  >
-    +
-  </button>
-</div>
+            <button
+              className="px-3 py-2 bg-gray-200 rounded"
+              onClick={() => setQuantity(Math.max(1, quantity - 1))}
+            >
+              -
+            </button>
+            <span>{quantity}</span>
+            <button
+              className="px-3 py-2 bg-gray-200 rounded"
+              onClick={() => setQuantity(quantity + 1)}
+            >
+              +
+            </button>
+          </div>
 
-<button 
-  className="w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-lg font-semibold"
-  onClick={() => {
-    const user = localStorage.getItem("user"); 
-if (!user) {
-  alert("Bạn cần đăng nhập để thêm sản phẩm vào giỏ hàng.");
-  window.location.href = "/dang-nhap"; 
-  return;
-}
-
-    if (product) {
-      console.log("🛍 Đang thêm vào giỏ hàng:", product, quantity);
-
-      addToCart({
-        id: product.id,
-        name: product.name,
-        image: product.image,
-        price: product.price,
-        quantity: quantity || 1, 
-      });
-
-      alert("Sản phẩm đã được thêm vào giỏ hàng! 🛒");
-    }
-  }}
->
-  Thêm vào giỏ hàng
-</button>
-
-
+          {/* Button thêm vào giỏ hàng */}
+          <button
+            className="w-full py-3 bg-green-600 hover:bg-green-700 text-white rounded-lg font-semibold"
+            onClick={handleAddToCart}
+          >
+            Thêm vào giỏ hàng
+          </button>
         </div>
       </div>
 
@@ -150,57 +183,56 @@ if (!user) {
         <h2 className="text-xl font-semibold">Đánh giá</h2>
         <div className="mt-4 flex items-center">
           <span className="text-yellow-400 text-2xl">★★★★★</span>
-          {/* <span className="ml-2 text-gray-700">{product.rating || "5.0"} (386 đánh giá)</span> */}
         </div>
       </div>
 
-
-       <div className="w-full max-w-md mx-auto p-4 ">
-      <div className="flex items-center space-x-2">
-        <div className="flex text-yellow-500 text-2xl">
-          {Array(5).fill("★").map((star, i) => (
-            <span key={i}>{star}</span>
+      {/* Đánh giá chi tiết */}
+      <div className="w-full max-w-md mx-auto p-4">
+        <div className="flex items-center space-x-2">
+          <div className="flex text-yellow-500 text-2xl">
+            {Array(5).fill("★").map((star, i) => (
+              <span key={i}>{star}</span>
+            ))}
+          </div>
+          <span className="text-green-600 text-2xl font-bold">5.0</span>
+          <span className="text-gray-500">({totalReviews})</span>
+        </div>
+        <div className="mt-4 space-y-2">
+          {ratings.map(({ rating, count }) => (
+            <div key={rating} className="flex items-center">
+              <span className="w-6 text-right">{rating}★</span>
+              <div className="flex-1 bg-gray-200 h-2 mx-2 rounded-full">
+                <div
+                  className="bg-gray-500 h-2 rounded-full"
+                  style={{ width: `${(count / totalReviews) * 100}%` }}
+                ></div>
+              </div>
+              <span className="w-12 text-right">({count})</span>
+            </div>
           ))}
         </div>
-        <span className="text-green-600 text-2xl font-bold">5.0</span>
-        <span className="text-gray-500">({totalReviews})</span>
       </div>
-      <div className="mt-4 space-y-2">
-        {ratings.map(({ rating, count }) => (
-          <div key={rating} className="flex items-center">
-            <span className="w-6 text-right">{rating}★</span>
-            <div className="flex-1 bg-gray-200 h-2 mx-2 rounded-full">
-              <div
-                className="bg-gray-500 h-2 rounded-full"
-                style={{ width: `${(count / totalReviews) * 100}%` }}
-              ></div>
-            </div>
-            <span className="w-12 text-right">({count})</span>
-          </div>
-        ))}
-      </div>
-    </div>
 
       {/* 🌟 Newsletter Section */}
       <div className="w-full flex justify-center px-6 mt-16">
-  <div className="max-w-3xl mx-auto text-center">
-    <h2 className="text-4xl font-bold text-[#3b4a38]">Etwas abonnieren <span className="text-3xl">*</span></h2>
-    <h2 className="text-4xl font-bold text-[#3b4a38]">
-      <span className="text-3xl">_</span> Unser Newsletter
-    </h2>
-    <p className="text-gray-600 mt-4">
-      Get weekly updates about our product on your email, no spam guaranteed we promise ✌️
-    </p>
-    <div className="mt-6 flex justify-center items-center">
-      <div className="flex items-center bg-white shadow-md rounded-md overflow-hidden w-full max-w-xl">
-        <input type="email" placeholder="youremail123@gmail.com" className="flex-1 py-3 px-4 text-gray-700 outline-none" />
+        <div className="max-w-3xl mx-auto text-center">
+          <h2 className="text-4xl font-bold text-[#3b4a38]">Etwas abonnieren <span className="text-3xl">*</span></h2>
+          <h2 className="text-4xl font-bold text-[#3b4a38]">
+            <span className="text-3xl">_</span> Unser Newsletter
+          </h2>
+          <p className="text-gray-600 mt-4">
+            Get weekly updates about our product on your email, no spam guaranteed we promise ✌️
+          </p>
+          <div className="mt-6 flex justify-center items-center">
+            <div className="flex items-center bg-white shadow-md rounded-md overflow-hidden w-full max-w-xl">
+              <input type="email" placeholder="youremail123@gmail.com" className="flex-1 py-3 px-4 text-gray-700 outline-none" />
+            </div>
+            <button className="ml-4 bg-[#3b4a38] text-white py-3 px-6 font-semibold rounded-md shadow-md hover:bg-[#2f3a2b]">
+              ABONNIEREN
+            </button>
+          </div>
+        </div>
       </div>
-      <button className="ml-4 bg-[#3b4a38] text-white py-3 px-6 font-semibold rounded-md shadow-md hover:bg-[#2f3a2b]">
-        ABONNIEREN
-      </button>
-    </div>
-  </div>
-</div>
       {/* 🌟 Footer Placeholder */}
       <div className="h-32"></div>
     </div>

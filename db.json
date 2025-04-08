@@ -97,19 +97,70 @@
     }
   ],
   "cart": [
-  {
-    "userId": 1,
-    "items": [
-      { "productId": 1, "quantity": 2 },
-      { "productId": 2, "quantity": 1 }
-    ]
-  },
-  {
-    "userId": 2,
-    "items": []
-  }
-]
+    {
+      "userId": 1,
+      "items": [
+        {
+          "productId": 1,
+          "quantity": 2
+        },
+        {
+          "productId": 2,
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "userId": 2,
+      "items": []
+    }
+  ],
+  "orders": [
+    {
+      "status": "Hủy đơn hàng",
+      "id": 1
+    },
+    {
+      "status": "Đã giao thành công",
+      "id": 2
+    },
+    {
+      "status": "Đã giao thành công",
+      "id": 3
+    },
+    {
+      "status": "Đã giao thành công",
+      "id": 4
+    },
+    {
+      "user": {
+        "email": "kien@gmail.com",
+        "fullName": "nguyen trung kien",
+        "phone": "0368471101",
+        "address": "thanh my",
+        "province": "Hà Nội",
+        "district": "Ba Đình",
+        "note": "ádsadsada"
+      },
+      "cartItems": [
+        {
+          "id": 1,
+          "name": "Nước Hoa Nam Giorgio Armani Armani Stronger With You Absolutely Parfum",
+          "image": "https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/8598bfd4-ce35-4eba-8a19-e35bf4979274-jpeg.jpg?v=1742368971723",
+          "price": 2690000,
+          "quantity": 1
+        },
+        {
+          "id": 2,
+          "name": "Nước hoa Nam Tom Ford Costa Azzurra Parfum",
+          "image": "https://bizweb.dktcdn.net/thumb/grande/100/110/910/products/1c69e148-7dd1-4285-8774-0449e2c025ce-jpeg-607672ad-45a6-41bb-9bfa-04dfdaa0c09e.jpg?v=1742355639387",
+          "price": 3589999,
+          "quantity": 1
+        }
+      ],
+      "totalAmount": 6309999,
+      "id": 5,
+      "status": "Hủy đơn hàng"
+    }
+  ]
 }
-
-  
-
