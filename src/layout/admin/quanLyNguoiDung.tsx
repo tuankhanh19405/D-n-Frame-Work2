@@ -45,6 +45,7 @@ const User: React.FC = () => {
               <th className="px-6 py-3 border-b">Tên</th>
               <th className="px-6 py-3 border-b">Email</th>
               <th className="px-6 py-3 border-b">Số Điện Thoại</th>
+              <th className="px-6 py-3 border-b">Chức Vụ</th>
               <th className="px-6 py-3 border-b">Action</th>
              
             </tr>
@@ -59,6 +60,12 @@ const User: React.FC = () => {
                   <td className="px-6 py-4 border-b font-medium text-gray-800">{product.name}</td>
                   <td className="px-6 py-4 border-b font-medium text-gray-800">{product.email}</td>
                   <td className="px-6 py-4 border-b font-medium text-gray-800">{product.phone}</td>
+                  <td className="px-6 py-4 border-b font-medium text-gray-800">
+  <span className={product.role === "admin" ? "text-red-600 font-semibold" : "text-blue-600 font-medium"}>
+    {product.role === "admin" ? "Admin" : "Người dùng"}
+  </span>
+</td>
+
                  
                   <td className="px-6 py-4 border-b flex justify-center space-x-2">
         {product.role !== "admin" && ( // Ẩn nút nếu là admin
