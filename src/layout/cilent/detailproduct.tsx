@@ -79,15 +79,9 @@ const ProductDetail = () => {
 
           {/* Giá sản phẩm */}
           <div className="flex items-center gap-2">
-            <span className="text-3xl font-semibold text-green-600">${product.price}</span>
-            {product.oldPrice && (
-              <span className="text-red-500 text-xl line-through">${product.oldPrice}</span>
-            )}
-            {product.discount && (
-              <span className="bg-red-200 text-red-700 px-2 py-1 rounded-md text-sm">
-                -{product.discount}%
-              </span>
-            )}
+            <span className="text-3xl font-semibold text-red-600">{product.price} VND</span>
+            
+            
           </div>
 
          {/* Nút tăng giảm số lượng */}
@@ -109,7 +103,7 @@ const ProductDetail = () => {
 
       {/* Nút thêm vào giỏ hàng */}
       <button 
-        className="w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded-lg font-semibold"
+        className="w-full border border-black text-black py-2 px-6 rounded-sm hover:bg-black hover:text-white transition-colors duration-300"
         onClick={() => {
           const user = localStorage.getItem("user"); // Kiểm tra user đăng nhập
           if (!user) {
